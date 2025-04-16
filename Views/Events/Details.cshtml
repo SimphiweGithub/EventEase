@@ -1,0 +1,131 @@
+@model Event
+
+@{
+    ViewData["Title"] = "Event Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5 text-white">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="section-title">Event Details</h2>
+        <a asp-action="Index" class="btn btn-outline-light">
+            <i class="bi bi-arrow-left me-2"></i>Back to List
+        </a>
+    </div>
+
+    <div class="card bg-dark border-secondary mb-4">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+            <h4 class="m-0">@Model.EventName</h4>
+            <div>
+                <span class="badge bg-primary me-2">
+                    <i class="bi bi-calendar-event me-1"></i>
+                    @Model.EventDate.ToString("MMM dd, yyyy")
+                </span>
+                <span class="badge bg-info">
+                    <i class="bi bi-clock me-1"></i>
+                    @Model.EventDate.ToString("h:mm tt")
+                </span>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <h5 class="mb-3 text-info">
+                        <i class="bi bi-geo-alt me-2"></i>Venue Information
+                    </h5>
+                    <div class="ps-4 mb-4">
+                        <p class="lead mb-1">@Model.Venue?.VenueName</p>
+                        <p class="text-muted">@Model.Venue?.Location</p>
+                    </div>
+
+                    <h5 class="mb-3 text-info">
+                        <i class="bi bi-info-circle me-2"></i>Description
+                    </h5>
+                    <div class="ps-4 mb-4">
+                        <p>@Model.Description</p>
+                    </div>
+
+                    <div class="d-flex mt-4">
+                        <button class="btn btn-outline-primary me-2">
+                            <i class="bi bi-calendar-plus me-2"></i>Add to Calendar
+                        </button>
+                        <button class="btn btn-outline-success me-2">
+                            <i class="bi bi-share me-2"></i>Share
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    @if (!string.IsNullOrEmpty(Model.Venue?.ImageUrl))
+                    {
+                        <img src="@Model.Venue.ImageUrl" class="img-fluid rounded mb-3" alt="@Model.Venue.VenueName" />
+                    }
+                    else
+                    {
+                        <div class="bg-secondary bg-opacity-25 rounded d-flex align-items-center justify-content-center mb-3" style="height: 200px">
+                            <i class="bi bi-image text-muted" style="font-size: 3rem"></i>
+                        </div>
+                    }
+
+                    <div class="card bg-dark border-secondary">
+                        <div class="card-header bg-secondary bg-opacity-25">
+                            <h5 class="m-0"><i class="bi bi-clock-history me-2"></i>Event Timeline</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush bg-transparent">
+                                <li class="list-group-item bg-dark text-white border-secondary">
+                                    <div class="d-flex align-items-center">
+                                        <div class="bg-primary rounded-circle p-2 me-3">
+                                            <i class="bi bi-door-open text-white"></i>
+                                        </div>
+                                        <div>
+                                            <p class="m-0">Doors Open</p>
+                                            <small class="text-muted">@Model.EventDate.AddMinutes(-30).ToString("h:mm tt")</small>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item bg-dark text-white border-secondary">
+                                    <div class="d-flex align-items-center">
+                                        <div class="bg-success rounded-circle p-2 me-3">
+                                            <i class="bi bi-play text-white"></i>
+                                        </div>
+                                        <div>
+                                            <p class="m-0">Event Starts</p>
+                                            <small class="text-muted">@Model.EventDate.ToString("h:mm tt")</small>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item bg-dark text-white border-secondary">
+                                    <div class="d-flex align-items-center">
+                                        <div class="bg-danger rounded-circle p-2 me-3">
+                                            <i class="bi bi-stop text-white"></i>
+                                        </div>
+                                        <div>
+                                            <p class="m-0">Event Ends</p>
+                                            <small class="text-muted">@Model.EventDate.AddHours(2).ToString("h:mm tt")</small>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer bg-dark border-top border-secondary d-flex justify-content-between">
+            <div>
+                <a asp-action="Edit" asp-route-id="@Model.EventId" class="btn btn-warning">
+                    <i class="bi bi-pencil me-2"></i>Edit
+                </a>
+                <a asp-action="Delete" asp-route-id="@Model.EventId" class="btn btn-outline-danger">
+                    <i class="bi bi-trash me-2"></i>Delete
+                </a>
+            </div>
+            <a asp-action="Index" class="btn btn-outline-light">
+                <i class="bi bi-arrow-left me-2"></i>Back to List
+            </a>
+        </div>
+    </div>
+</div>

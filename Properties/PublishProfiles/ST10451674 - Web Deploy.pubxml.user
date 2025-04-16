@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <History>True|2025-04-07T06:34:52.2917895Z||;True|2025-04-06T20:59:42.1136563+02:00||;True|2025-04-06T18:49:42.6189793+02:00||;True|2025-04-06T18:35:44.0743760+02:00||;False|2025-04-06T18:28:46.8077763+02:00||;True|2025-04-06T17:01:30.7862947+02:00||;True|2025-04-06T16:51:57.2408243+02:00||;True|2025-04-06T16:39:12.6944794+02:00||;True|2025-04-06T09:30:55.8278701+02:00||;True|2025-04-06T08:50:56.7360939+02:00||;True|2025-04-06T08:39:31.8364682+02:00||;False|2025-04-06T08:29:35.0408503+02:00||;False|2025-04-06T08:17:38.8376280+02:00||;False|2025-04-06T08:13:55.8429642+02:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="EventEaseContextAzure">
+      <Value>Server=tcp:simphiwekhumalo.database.windows.net,1433%3bInitial Catalog=EventEase%3bPersist Security Info=False%3bUser ID=ServerAdmin%3bPassword=Simphiwe%401%3bMultipleActiveResultSets=False%3bEncrypt=True%3bTrustServerCertificate=False%3bConnection Timeout=30%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

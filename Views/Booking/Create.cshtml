@@ -1,0 +1,65 @@
+﻿@model Booking
+
+@{
+    ViewData["Title"] = "Create Booking";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-gradient-primary text-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="mb-0 fs-3"><i class="bi bi-plus-circle me-2"></i>Create Booking</h2>
+                <a asp-action="MyBookings" asp-controller="Booking" class="btn btn-outline-light">
+                    <i class="bi bi-arrow-left me-1"></i>Back to My Bookings
+                </a>
+            </div>
+        </div>
+
+        <div class="card-body p-4">
+            <form asp-action="Create" class="needs-validation" novalidate>
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input asp-for="BookingDate" class="form-control" type="date" />
+                            <label asp-for="BookingDate" class="control-label"></label>
+                            <span asp-validation-for="BookingDate" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select asp-for="EventId" class="form-select" asp-items="ViewBag.EventId"></select>
+                            <label asp-for="EventId" class="control-label"></label>
+                            <span asp-validation-for="EventId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-floating mb-3">
+                            <select asp-for="VenueId" class="form-select" asp-items="ViewBag.VenueId"></select>
+                            <label asp-for="VenueId" class="control-label"></label>
+                            <span asp-validation-for="VenueId" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                    <a asp-action="MyBookings" class="btn btn-outline-secondary me-md-2">
+                        <i class="bi bi-x-circle me-1"></i>Cancel
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-check-circle me-1"></i>Create Booking
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

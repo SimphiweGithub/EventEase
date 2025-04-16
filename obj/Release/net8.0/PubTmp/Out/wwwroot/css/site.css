@@ -1,0 +1,44 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+/* Disable all hover effects */
+* {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+}
+
+/* Specifically target Bootstrap components */
+.btn:hover,
+.card:hover,
+.nav-link:hover,
+[data-bs-toggle="tooltip"]:hover {
+    transition: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Disable tooltip animations */
+.tooltip {
+    animation: none !important;
+    transition: none !important;
+}

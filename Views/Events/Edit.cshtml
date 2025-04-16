@@ -1,0 +1,92 @@
+@model Event
+
+@{
+    ViewData["Title"] = "Edit Event";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+
+<div class="container mt-5 text-white">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="section-title">Edit Event</h2>
+        <a asp-action="Index" class="btn btn-outline-light">
+            <i class="bi bi-arrow-left me-2"></i>Back to List
+        </a>
+    </div>
+
+    <div class="card bg-dark border-warning mb-4">
+        <div class="card-header bg-warning bg-opacity-25 text-white">
+            <h4 class="m-0"><i class="bi bi-pencil-square me-2"></i>Update Event Details</h4>
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit" method="post">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger bg-dark text-danger border-danger"></div>
+                <input type="hidden" asp-for="EventId" />
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-floating mb-4">
+                            <input asp-for="EventName" class="form-control bg-dark text-white border-secondary" placeholder="Event Name" />
+                            <label asp-for="EventName" class="text-muted">Event Name</label>
+                            <span asp-validation-for="EventName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            <input asp-for="EventDate" class="form-control bg-dark text-white border-secondary" type="datetime-local" placeholder="Event Date" />
+                            <label asp-for="EventDate" class="text-muted">Event Date</label>
+                            <span asp-validation-for="EventDate" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            <select asp-for="VenueId" class="form-select bg-dark text-white border-secondary" asp-items="ViewBag.VenueId" placeholder="Venue">
+                            </select>
+                            <label asp-for="VenueId" class="text-muted">Venue</label>
+                            <span asp-validation-for="VenueId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        @if (!string.IsNullOrEmpty(Model.Venue?.ImageUrl))
+                        {
+                            <img src="@Model.Venue.ImageUrl" class="img-fluid rounded mb-3" alt="@Model.Venue.VenueName" />
+                        }
+                        else
+                        {
+                            <div class="bg-secondary bg-opacity-25 rounded d-flex align-items-center justify-content-center mb-3" style="height: 200px">
+                                <i class="bi bi-image text-muted" style="font-size: 3rem"></i>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="form-floating mb-4">
+                    <textarea asp-for="Description" class="form-control bg-dark text-white border-secondary" placeholder="Description" style="height: 150px"></textarea>
+                    <label asp-for="Description" class="text-muted">Description</label>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-warning">
+                        <i class="bi bi-check-circle me-2"></i>Save Changes
+                    </button>
+                    <a asp-action="Details" asp-route-id="@Model.EventId" class="btn btn-outline-secondary">
+                        <i class="bi bi-x-circle me-2"></i>Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        // Add animation to form fields
+        document.querySelectorAll('.form-control, .form-select').forEach(el => {
+            el.addEventListener('focus', () => el.parentElement.classList.add('border-warning'));
+            el.addEventListener('blur', () => el.parentElement.classList.remove('border-warning'));
+        });
+    </script>
+}
