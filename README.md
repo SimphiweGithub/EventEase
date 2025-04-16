@@ -1,2 +1,10 @@
-# EventEase
-Basic Venue/Event Booking cloud application built with asp.net core mvc that uses azure to host on the cloud
+Tech Stack
+Frontend: Razor Views, Bootstrap
+
+Backend: ASP.NET Core MVC 8.0
+
+Database: Azure SQL (EventEaseDB)
+
+ORM: Entity Framework Core
+
+Deployment: Azure App Service
